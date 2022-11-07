@@ -14,8 +14,8 @@ pipeline {
     
     stage('Build Image') {
       steps {
-      sh "docker build -t sreenu/request-logger:${env.BUILD_ID} ."
-      sh "docker tag sreenu/request-logger:${env.BUILD_ID} sreenu/request-logger:latest"
+      sh "docker build -t sreenu16/request-logger:${env.BUILD_ID} ."
+      sh "docker tag sreenu16/request-logger:${env.BUILD_ID} sreenu16/request-logger:latest"
       }
     }
     
@@ -28,8 +28,8 @@ pipeline {
     success {
       withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-        sh "docker push sreenu/request-logger:${env.BUILD_ID}"
-        sh "docker push sreenurequest-logger:latest"
+        sh "docker push sreenu16/request-logger:${env.BUILD_ID}"
+        sh "docker push sreenu16/request-logger:latest"
       }
     }
   }
